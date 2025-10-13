@@ -1,3 +1,5 @@
+# Justfile for a developer-oriented ublue image
+# Supernova-dx
 export image_name := env("IMAGE_NAME", "supernova-dx") # output image name, usually same as repo name, change as needed export default_tag := env("DEFAULT_TAG", "latest")
 export bib_image := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest")
 export default_tag := 'latest'

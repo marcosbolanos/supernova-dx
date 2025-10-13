@@ -1,0 +1,19 @@
+dnf5 -y copr enable ganto/lxc4
+
+#umoci
+dnf5 -y copr enable ganto/umoci
+
+#ublue-os staging
+dnf5 -y copr enable ublue-os/staging
+
+#ublue-os packages
+dnf5 -y copr enable ublue-os/packages
+
+#karmab-kcli
+dnf5 -y copr enable karmab/kcli
+
+# Kvmfr module
+dnf5 -y copr enable hikariknight/looking-glass-kvmfr
+
+# Podman-bootc
+dnf5 -y copr enable gmaglione/podman-bootc
