@@ -1,5 +1,8 @@
 dnf5 -y copr enable ganto/lxc4
 
+#Cosmic Desktop
+dnf5 -y copr enable ryanabx/cosmic-epoch-tagged
+
 #umoci
 dnf5 -y copr enable ganto/umoci
 
