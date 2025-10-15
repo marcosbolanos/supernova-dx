@@ -5,8 +5,7 @@ COPY packages.json /
 COPY system_files/yum.repos.d /system_files
 
 # Base Image
-FROM quay.io/fedora/fedora-bootc:latest
-
+FROM quay.io/fedora-ostree-desktops/cosmic-atomic:42
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \

@@ -6,7 +6,6 @@
                 "android-udev-rules",
                 "apr",
                 "apr-util",
-				"@cosmic-desktop-environment",
                 "distrobox",
                 "fdk-aac",
                 "ffmpeg",
