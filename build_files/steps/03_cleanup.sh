@@ -4,11 +4,14 @@ echo "::group:: ===$(basename "$0")==="
 
 set -eoux pipefail
 
-if rpm -q docker-ce >/dev/null; then
-  systemctl enable docker.socket
-fi
+# Enable automatic updates
+systemctl enable bootc-fetch-apply-updates.timer
+systemctl enable bootc-fetch-apply-updates.service
+
+# Enable needed services
 systemctl enable podman.socket
 systemctl enable docker.service
+systemctl enable docker.socket
 systemctl enable swtpm-workaround.service
 systemctl enable ublue-os-libvirt-workarounds.service
 systemctl enable aurora-dx-groups.service

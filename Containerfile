@@ -5,7 +5,7 @@ COPY packages.json /
 COPY system_files/yum.repos.d /system_files
 
 # Base Image
-FROM ghcr.io/fedora/fedora-bootc:latest
+FROM quay.io/fedora/fedora-bootc:latest
 
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \

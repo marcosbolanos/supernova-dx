@@ -12,7 +12,7 @@ readarray -t INCLUDED_PACKAGES < <(jq -r "[(.all.include | (select(.dx != null).
 
 # Install Packages
 if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-  dnf5 -y install "${INCLUDED_PACKAGES[@]}"
+  dnf -y install "${INCLUDED_PACKAGES[@]}"
 else
   echo "No packages to install."
 fi
@@ -28,7 +28,7 @@ fi
 
 # remove any excluded packages which are still present on image
 if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-  dnf5 -y remove "${EXCLUDED_PACKAGES[@]}"
+  dnf -y remove "${EXCLUDED_PACKAGES[@]}"
 else
   echo "No packages to remove."
 fi
