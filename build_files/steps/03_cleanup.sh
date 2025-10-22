@@ -8,6 +8,15 @@ set -eoux pipefail
 systemctl enable bootc-fetch-apply-updates.timer
 systemctl enable bootc-fetch-apply-updates.service
 
+# Create an override to avoid auto-rebooting when auto-updating
+# This removes the --apply flag, enabling the default behaviour of staging
+mkdir -p /etc/systemd/system/bootc-fetch-apply-updates.service.d
+cat >/etc/systemd/system/bootc-fetch-apply-updates.service.d/no-apply.conf << 'EOF'
+[Service]
+ExecStart=
+ExecStart=/usr/bin/bootc upgrade --quiet
+EOF
+
 # Enable needed services
 systemctl enable podman.socket
 systemctl enable docker.service
