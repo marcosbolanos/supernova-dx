@@ -5,15 +5,15 @@ COPY packages.json /
 COPY system_files/yum.repos.d /system_files
 
 # Base Image
-FROM quay.io/fedora-ostree-desktops/cosmic-atomic:42
+FROM quay.io/fedora-ostree-desktops/cosmic-atomic:43
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
-    --mount=type=cache,dst=/var/cache \
-    --mount=type=cache,dst=/var/log \
-    --mount=type=tmpfs,dst=/tmp \
-    sh -c "/ctx/build.sh"
-    
-    
+  --mount=type=cache,dst=/var/cache \
+  --mount=type=cache,dst=/var/log \
+  --mount=type=tmpfs,dst=/tmp \
+  sh -c "/ctx/build.sh"
+
+
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
