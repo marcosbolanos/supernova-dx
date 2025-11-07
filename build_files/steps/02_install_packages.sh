@@ -12,7 +12,7 @@ readarray -t INCLUDED_PACKAGES < <(jq -r "[(.all.include | (select(.dx != null).
 
 # Install Packages
 if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-  dnf -y install "${INCLUDED_PACKAGES[@]}"
+  dnf -y install "${INCLUDED_PACKAGES[@]}" --skip-unavailable
 else
   echo "No packages to install."
 fi
