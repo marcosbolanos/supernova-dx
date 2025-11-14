@@ -11,16 +11,17 @@ systemctl enable bootc-fetch-apply-updates.service
 # Create an override to avoid auto-rebooting when auto-updating
 # This removes the --apply flag, enabling the default behaviour of staging
 mkdir -p /etc/systemd/system/bootc-fetch-apply-updates.service.d
-cat >/etc/systemd/system/bootc-fetch-apply-updates.service.d/no-apply.conf << 'EOF'
+cat >/etc/systemd/system/bootc-fetch-apply-updates.service.d/no-apply.conf <<'EOF'
 [Service]
 ExecStart=
 ExecStart=/usr/bin/bootc upgrade --quiet
 EOF
 
-# Enable needed services
+# Enable/start needed services
 systemctl enable podman.socket
 systemctl enable docker.service
 systemctl enable docker.socket
+systemctl start docker
 systemctl enable swtpm-workaround.service
 systemctl enable ublue-os-libvirt-workarounds.service
 systemctl enable aurora-dx-groups.service
