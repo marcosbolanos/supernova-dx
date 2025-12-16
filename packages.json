@@ -124,7 +124,7 @@
 				"uupd",
 				"virtualbox-guest-additions",
 				"wireguard-tools",
-				"wl-clipboard",
+				"wl-clipboard"
 			],
 			"dx": [
 				"adobe-source-code-pro-fonts",
