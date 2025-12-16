@@ -61,6 +61,7 @@
                 "xhost",
                 "xorg-x11-xauth",
                 "yubikey-manager",
+                "zsh",
                 "zstd",
 				"adcli",
 				"bazaar",
