@@ -125,7 +125,6 @@
 				"virtualbox-guest-additions",
 				"wireguard-tools",
 				"wl-clipboard",
-				"zsh"
 			],
 			"dx": [
 				"adobe-source-code-pro-fonts",
@@ -195,7 +194,8 @@
 				"virt-manager",
 				"virt-v2v",
 				"virt-viewer",
-				"ydotool"
+				"ydotool",
+				"zsh"
 			]
 		},
 		"exclude": {
