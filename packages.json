@@ -195,6 +195,7 @@
 				"rocm-opencl",
 				"rocm-smi",
 				"sysprof",
+				"tailscale",
 				"tiptop",
 				"trace-cmd",
 				"ublue-os-libvirt-workarounds",
