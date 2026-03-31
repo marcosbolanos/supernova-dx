@@ -6,3 +6,6 @@ echo "Adding needed COPR repos: "
 
 echo "Installing packages: "
 /ctx/steps/02_install_packages.sh
+
+echo "Running cleanup: "
+/ctx/steps/03_cleanup.sh

@@ -22,6 +22,8 @@ systemctl enable podman.socket
 systemctl enable docker.service
 systemctl enable docker.socket
 systemctl start docker
+systemctl enable tailscaled.service
+systemctl start tailscaled
 systemctl enable swtpm-workaround.service
 systemctl enable ublue-os-libvirt-workarounds.service
 systemctl enable aurora-dx-groups.service
