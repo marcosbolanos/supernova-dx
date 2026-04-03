@@ -21,7 +21,6 @@ EOF
 systemctl enable podman.socket
 systemctl enable docker.service
 systemctl enable docker.socket
-systemctl start docker
 systemctl enable tailscaled.service
 systemctl enable swtpm-workaround.service
 systemctl enable ublue-os-libvirt-workarounds.service
@@ -48,5 +47,16 @@ dnf5 -y config-manager setopt "terra".enabled=false
 for i in /etc/yum.repos.d/rpmfusion-*; do
   sed -i 's@enabled=1@enabled=0@g' "$i"
 done
+
+run_if_systemd() {
+  if [ -d /run/systemd/system ]; then
+    "$@"
+  else
+    echo "::warning::systemd not running; skipping $*"
+  fi
+}
+
+run_if_systemd systemctl start docker
+run_if_systemd systemctl start tailscaled
 
 echo "::endgroup::"
