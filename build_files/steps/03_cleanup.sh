@@ -22,7 +22,6 @@ systemctl enable podman.socket
 systemctl enable docker.service
 systemctl enable docker.socket
 systemctl enable tailscaled.service
-systemctl enable --global aurora-dx-user-vscode.service
 
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/vscode.repo
 sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/docker-ce.repo
