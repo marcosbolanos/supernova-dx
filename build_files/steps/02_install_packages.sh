@@ -5,12 +5,8 @@
 cp /ctx/packages.json /tmp/packages.json
 cp /ctx/system_files/* /etc/yum.repos.d/
 
-# build list of all packages requested for inclusion
-readarray -t INCLUDED_PACKAGES < <(jq -r "[(.all.include.all // [])[], \
-                    (.all.include.dx // [])[], \
-                    (select(.\"$FEDORA_MAJOR_VERSION\" != null) | .\"$FEDORA_MAJOR_VERSION\".include.all // [])[], \
-                    (select(.\"$FEDORA_MAJOR_VERSION\" != null) | .\"$FEDORA_MAJOR_VERSION\".include.dx // [])[]] \
-                    | sort | unique[]" /tmp/packages.json)
+# Build the single package list requested for this image.
+readarray -t INCLUDED_PACKAGES < <(jq -r "(.include // []) | sort | unique[]" /tmp/packages.json)
 
 # Install Packages
 if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
@@ -19,12 +15,8 @@ else
   echo "No packages to install."
 fi
 
-# build list of all packages requested for exclusion
-readarray -t EXCLUDED_PACKAGES < <(jq -r "[(.all.exclude.all // [])[], \
-                    (.all.exclude.dx // [])[], \
-                    (select(.\"$FEDORA_MAJOR_VERSION\" != null) | .\"$FEDORA_MAJOR_VERSION\".exclude.all // [])[], \
-                    (select(.\"$FEDORA_MAJOR_VERSION\" != null) | .\"$FEDORA_MAJOR_VERSION\".exclude.dx // [])[]] \
-                    | sort | unique[]" /tmp/packages.json)
+# Build the single exclusion list requested for this image.
+readarray -t EXCLUDED_PACKAGES < <(jq -r "(.exclude // []) | sort | unique[]" /tmp/packages.json)
 
 if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
   readarray -t EXCLUDED_PACKAGES < <(rpm -qa --queryformat='%{NAME}\n' "${EXCLUDED_PACKAGES[@]}")
