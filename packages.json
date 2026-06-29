@@ -100,7 +100,7 @@
     "make",
     "pkgconf-pkg-config",
     "ccache",
-    "gdb",
+    "gdb"
   ],
   "exclude": []
 }
