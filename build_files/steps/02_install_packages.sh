@@ -8,6 +8,9 @@ cp /ctx/system_files/* /etc/yum.repos.d/
 # Build the single package list requested for this image.
 readarray -t INCLUDED_PACKAGES < <(jq -r "(.include // []) | sort | unique[]" /tmp/packages.json)
 
+# Update the system CA certificates
+dnf5 -y --refresh upgrade ca-certificates
+
 # Install Packages
 if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
   dnf -y install "${INCLUDED_PACKAGES[@]}" --skip-unavailable
